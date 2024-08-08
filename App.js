@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 const url = 'https://fedskillstest.coalitiontechnologies.workers.dev';
 
 
+
 fetch(url, {
     method: 'GET',
     headers: {
@@ -23,16 +24,17 @@ fetch(url, {
 })
 .then(response => response.json())
 .then(data =>{
+
+    
     const ctx = document.getElementById('myChart');
-    console.log(data.diagnostic_history)
 
     new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ["month", "diastolic", "heart_rate", "respiratory_rate",],
+        labels: ["systolic", "diastolic", "heart_rate", "respiratory_rate",],
         datasets: [{
-          label: 'Diagnostic History',
-          data: data.diagnostic_history,
+          label: 'Blood Pressure',
+          data: data.forEach(d => d.level),
           borderWidth: 1
         }]
       },
